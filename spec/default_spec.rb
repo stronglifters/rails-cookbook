@@ -12,4 +12,10 @@ describe 'mokhan-myface::default' do
   it 'enables apache2 to start on boot' do
     expect(chef_run).to enable_service('apache2')
   end
+
+  it 'creates the default template' do
+    expect(chef_run).to create_template('/var/www/index.html')
+      .with_owner('root')
+      .with_group('root')
+  end
 end
