@@ -8,4 +8,8 @@ describe 'mokhan-myface::default' do
   it 'starts the apache2 service' do
     expect(chef_run).to start_service('apache2')
   end
+
+  it 'enables apache2 to start on boot' do
+    expect(chef_run).to enable_service('apache2')
+  end
 end
