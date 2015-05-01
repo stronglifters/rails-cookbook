@@ -1,0 +1,10 @@
+<html>
+  <head>
+    <title>Welcome to <%= node['fqdn'] %></title>
+  </head>
+
+  <body>
+    <p>Here's everything you need to know about <%= node['fqdn'] %>:</p>
+    <pre><%= JSON.pretty_generate(node.to_hash) %></pre>
+  </body>
+</html>

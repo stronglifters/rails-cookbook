@@ -5,7 +5,7 @@ group :test do
   gem 'foodcritic'
   gem 'strainer'
   gem 'test-kitchen'
-  gem 'kitchen-lxc'
+  gem 'kitchen-vagrant'
   gem 'knife-spork'
   gem 'hipchat'
 
