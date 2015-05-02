@@ -1,0 +1,34 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          delayed_job
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+### END INIT INFO
+set -e
+
+usage() {
+  echo "Usage: /etc/init.d/delayed_job {start|stop|status|restart|force-reload} <environment>" >&2
+  exit 1
+}
+
+interact() {
+  op="$1"
+  echo "$1ing delayed_job"
+  su - -c "cd <%= @current_path %>; RAILS_ENV=<%= @rails_env %> bin/delayed_job $op" <%= @user %>
+}
+
+case "$1" in
+  start|stop|status)
+    interact "$1"
+    ;;
+  reload|restart|force-reload)
+    interact restart
+    ;;
+  *)
+    usage
+    ;;
+esac
+
+exit 0
