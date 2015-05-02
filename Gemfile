@@ -6,6 +6,8 @@ group :test do
   gem 'strainer'
   gem 'test-kitchen'
   gem 'kitchen-vagrant'
+  gem 'kitchen-docker'
+  gem 'kitchen-lxc'
   gem 'knife-spork'
   gem 'hipchat'
 
