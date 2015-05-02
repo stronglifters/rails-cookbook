@@ -1,0 +1,32 @@
+configuration = node['capistrano']
+root_path = configuration['root_path']
+shared_path = File.join(root_path, "shared")
+directories = [
+  configuration['root_path'],
+  shared_path,
+  "#{shared_path}/backups",
+  "#{shared_path}/bundle",
+  "#{shared_path}/config",
+  "#{shared_path}/log",
+  "#{shared_path}/pids",
+  "#{shared_path}/sockets",
+  "#{root_path}/releases",
+]
+
+directories.each do |dir_name|
+  directory dir_name do
+    owner configuration['username']
+    group configuration['username']
+    mode "0755"
+    recursive true
+    action :create
+  end
+end
+
+template "#{shared_path}/.env" do
+  source "env.erb"
+  owner configuration['username']
+  group configuration['username']
+  mode "0600"
+  variables(configuration['env'])
+end

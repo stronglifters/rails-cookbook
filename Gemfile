@@ -14,4 +14,6 @@ group :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-shell'
+
+  gem 'ffaker'
 end

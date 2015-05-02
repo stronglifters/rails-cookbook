@@ -91,6 +91,7 @@ GEM
     fauxhai (2.3.0)
       net-ssh
       ohai
+    ffaker (2.0.0)
     ffi (1.9.8)
     ffi-yajl (2.2.0)
       libyajl2 (~> 1.2)
@@ -301,6 +302,7 @@ PLATFORMS
 
 DEPENDENCIES
   chefspec
+  ffaker
   foodcritic
   guard
   guard-rspec
