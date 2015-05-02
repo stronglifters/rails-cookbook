@@ -12,6 +12,6 @@ group :test do
   gem 'hipchat'
 
   gem 'guard'
-  gem 'guard-foodcritic'
   gem 'guard-rspec'
+  gem 'guard-shell'
 end
