@@ -50,3 +50,4 @@ default[:nginx][:shared_path] = "#{node['capistrano']['root_path']}/shared_path"
 default[:unicorn][:username] = node['user']['username']
 default[:unicorn][:current_path] = "#{node['capistrano']['root_path']}/current"
 default[:unicorn][:rails_env] = node.chef_environment
+default[:monit][:application] = 'app'
