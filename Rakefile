@@ -1,7 +1,7 @@
-begin
-  require 'rspec/core/rake_task'
-  RSpec::Core::RakeTask.new(:spec)
-rescue LoadError
-end
+require 'rspec/core/rake_task'
+require 'foodcritic'
 
-task default: [:spec]
+RSpec::Core::RakeTask.new(:spec)
+FoodCritic::Rake::LintTask.new
+
+task default: [:foodcritic, :spec]
