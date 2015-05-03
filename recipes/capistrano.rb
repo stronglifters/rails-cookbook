@@ -1,8 +1,11 @@
+include_recipe "mokhan-myface::user"
+
 configuration = node['capistrano']
 root_path = configuration['root_path']
 shared_path = File.join(root_path, "shared")
+
 directories = [
-  configuration['root_path'],
+  root_path,
   shared_path,
   "#{shared_path}/backups",
   "#{shared_path}/bundle",
