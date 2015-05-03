@@ -17,4 +17,5 @@ suites:
       - recipe[mokhan-myface::nginx]
       - recipe[mokhan-myface::unicorn]
       - recipe[mokhan-myface::nodejs]
+      - recipe[mokhan-myface::rbenv]
     attributes:

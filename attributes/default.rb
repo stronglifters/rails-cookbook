@@ -51,3 +51,4 @@ default[:unicorn][:username] = node['user']['username']
 default[:unicorn][:current_path] = "#{node['capistrano']['root_path']}/current"
 default[:unicorn][:rails_env] = node.chef_environment
 default[:monit][:application] = 'app'
+default['rbenv']['ruby_version'] = '2.2.0'
