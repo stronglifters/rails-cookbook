@@ -3,7 +3,6 @@ describe 'mokhan-myface::capistrano' do
     ChefSpec::SoloRunner.new do |node|
       node.set['capistrano']['root_path'] = root_path
       node.set['capistrano']['username'] = username
-      #node.set['capistrano']['env'] = environment_variables
     end.converge(described_recipe)
   end
   let(:root_path) { "/var/www/#{FFaker::Internet.domain_name}"  }
