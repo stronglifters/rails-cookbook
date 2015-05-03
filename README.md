@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mokhan/myface.svg?branch=master)](https://travis-ci.org/mokhan/myface)
+
 mokhan-myface Cookbook
 ======================
 TODO: Enter the cookbook description here.
