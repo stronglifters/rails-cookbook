@@ -313,5 +313,6 @@ DEPENDENCIES
   kitchen-lxc
   kitchen-vagrant
   knife-spork
+  rake
   strainer
   test-kitchen
