@@ -41,3 +41,4 @@ default['capistrano']['env'] = {
   },
   newrelic_key: '',
 }
+default['delayed_job']['username'] = default['user']['username']

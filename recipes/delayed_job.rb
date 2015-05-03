@@ -1,3 +1,5 @@
+include_recipe "mokhan-myface::user"
+
 configuration = node['delayed_job']
 
 template "/etc/init.d/delayed_job" do
@@ -10,4 +12,4 @@ end
 
 service 'delayed_job' do
   action [:enable, :start]
-end
+end if File.exists?("#{configuration['current_path']}/Gemfile")

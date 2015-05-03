@@ -8,7 +8,8 @@ describe "mokhan-myface::delayed_job" do
   let(:username) { FFaker::Internet.user_name }
   let(:configuration) do
     {
-      'username' => username
+      'username' => username,
+      'current_path' => '/tmp'
     }
   end
 
@@ -20,7 +21,17 @@ describe "mokhan-myface::delayed_job" do
       .with_variables(configuration)
   end
 
-  it 'starts the delayed_job service' do
-    expect(subject).to start_service('delayed_job')
+  context "when the application has been deployed" do
+    before :each do
+      FileUtils.touch('/tmp/Gemfile')
+    end
+
+    after :each do
+      FileUtils.rm('/tmp/Gemfile')
+    end
+
+    it 'starts the delayed_job service' do
+      expect(subject).to start_service('delayed_job')
+    end
   end
 end

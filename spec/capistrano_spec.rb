@@ -3,13 +3,12 @@ describe 'mokhan-myface::capistrano' do
     ChefSpec::SoloRunner.new do |node|
       node.set['capistrano']['root_path'] = root_path
       node.set['capistrano']['username'] = username
-      node.set['capistrano']['env'] = environment_variables
+      #node.set['capistrano']['env'] = environment_variables
     end.converge(described_recipe)
   end
   let(:root_path) { "/var/www/#{FFaker::Internet.domain_name}"  }
   let(:shared_path) { "#{root_path}/shared" }
   let(:username) { 'deployer' }
-  let(:environment_variables) { Hash.new }
 
   it 'creates the root directory for the application' do
     expect(subject).to create_directory(root_path)
@@ -48,6 +47,5 @@ describe 'mokhan-myface::capistrano' do
       .with_owner(username)
       .with_group(username)
       .with_mode("0600")
-      .with_variables(environment_variables)
   end
 end
