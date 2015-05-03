@@ -41,4 +41,8 @@ default['capistrano']['env'] = {
   },
   newrelic_key: '',
 }
-default['delayed_job']['username'] = default['user']['username']
+default['delayed_job'] = {
+  username: default['user']['username'],
+  current_path: "#{default['capistrano']['root_path']}/current",
+  rails_env: node.chef_environment,
+}

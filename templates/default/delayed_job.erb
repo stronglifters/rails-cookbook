@@ -16,7 +16,7 @@ usage() {
 interact() {
   op="$1"
   echo "$1ing delayed_job"
-  su - -c "cd <%= @current_path %>; RAILS_ENV=<%= @rails_env %> bin/delayed_job $op" <%= @user %>
+  su - -c "cd <%= @current_path %>; RAILS_ENV=<%= @rails_env %> bin/delayed_job $op" <%= @username %>
 }
 
 case "$1" in
