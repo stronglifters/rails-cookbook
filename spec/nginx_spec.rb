@@ -3,6 +3,7 @@ describe 'mokhan-myface::nginx' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|
       node.set['nginx']['domain'] = domain
+      node.set['lsb']['codename'] = 'trusty'
     end.converge(described_recipe)
   end
 
