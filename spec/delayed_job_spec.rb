@@ -1,15 +1,16 @@
 describe "mokhan-myface::delayed_job" do
   subject do
     ChefSpec::SoloRunner.new do |node|
-      node.set['delayed_job'] = configuration
+      node.set['delayed_job'] = configuration#.merge(node['delayed_job'])
     end.converge(described_recipe)
   end
 
   let(:username) { FFaker::Internet.user_name }
   let(:configuration) do
     {
-      'username' => username,
-      'current_path' => '/tmp'
+      username: username,
+      current_path: '/tmp',
+      rails_env: :production,
     }
   end
 
@@ -18,7 +19,6 @@ describe "mokhan-myface::delayed_job" do
       .with_owner(username)
       .with_group(username)
       .with_mode("0744")
-      .with_variables(configuration)
   end
 
   context "when the application has been deployed" do

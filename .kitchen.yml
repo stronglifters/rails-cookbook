@@ -14,6 +14,6 @@ suites:
       - recipe[mokhan-myface::default]
       - recipe[mokhan-myface::capistrano]
       - recipe[mokhan-myface::delayed_job]
-      #- recipe[mokhan-myface::nginx]
+      - recipe[mokhan-myface::nginx]
       #- recipe[mokhan-myface::unicorn]
     attributes:

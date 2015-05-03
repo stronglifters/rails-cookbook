@@ -1,6 +1,6 @@
 default['user']['username'] = 'rails'
 default['capistrano']['root_path'] = '/var/www/app'
-default['capistrano']['username'] = default['user']['username']
+default['capistrano']['username'] = node['user']['username']
 default['capistrano']['env'] = {
   aws: {
     access_key: '',
@@ -42,7 +42,10 @@ default['capistrano']['env'] = {
   newrelic_key: '',
 }
 default['delayed_job'] = {
-  username: default['user']['username'],
-  current_path: "#{default['capistrano']['root_path']}/current",
+  username: node['user']['username'],
+  current_path: "#{node['capistrano']['root_path']}/current",
   rails_env: node.chef_environment,
 }
+default[:nginx][:domain] = 'www.example.com'
+default[:nginx][:current_path] = "#{node['capistrano']['root_path']}/current"
+default[:nginx][:shared_path] = "#{node['capistrano']['root_path']}/shared_path"
