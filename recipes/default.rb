@@ -1,3 +1,6 @@
+include_recipe "apt"
+include_recipe "mokhan-myface::monit"
+
 packages = [
   "curl",
   "libcurl3", "libcurl3-gnutls", "libcurl4-openssl-dev",
@@ -31,5 +34,3 @@ packages.each do |item|
     action :upgrade
   end
 end
-
-include_recipe "mokhan-myface::monit"

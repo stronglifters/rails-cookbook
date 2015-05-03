@@ -16,4 +16,5 @@ suites:
       - recipe[mokhan-myface::delayed_job]
       - recipe[mokhan-myface::nginx]
       - recipe[mokhan-myface::unicorn]
+      - recipe[mokhan-myface::nodejs]
     attributes:
