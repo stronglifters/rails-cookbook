@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'berkshelf'
+
 group :test do
   gem 'chefspec'
   gem 'foodcritic'
