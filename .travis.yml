@@ -6,4 +6,3 @@ rvm:
 branches:
   only:
     - master
-script: bundle exec strainer test --except kitchen
