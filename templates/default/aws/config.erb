@@ -1,6 +1,5 @@
-<% @profiles.each do |profile, options|
+<% @profiles.each do |profile, options| %>
 [profile <%= profile %>]
-  <% options.each do |key, value| %>
-<%= key %> = <%= value %>
-  <% end %>
+region = <%= options.fetch('region', 'us-east-1') %>
+output = <%= options.fetch('output', 'text') %>
 <% end %>
