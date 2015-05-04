@@ -12,7 +12,7 @@ package 'nginx' do
 end
 package 'logrotate'
 
-configuration = node[:nginx]
+configuration = node['nginx']
 directory "/etc/nginx/ssl" do
   owner "root"
   group "root"
@@ -20,7 +20,7 @@ directory "/etc/nginx/ssl" do
   action :create
 end
 
-cookbook_file "/etc/nginx/ssl/#{configuration[:domain]}.crt" do
+cookbook_file "/etc/nginx/ssl/#{configuration['domain']}.crt" do
   source "#{node.chef_environment}.crt"
   mode "0644"
 end

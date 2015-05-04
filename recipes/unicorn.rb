@@ -1,4 +1,4 @@
-configuration = node[:unicorn]
+configuration = node['unicorn']
 
 template "/etc/init.d/unicorn" do
   source "unicorn.erb"
