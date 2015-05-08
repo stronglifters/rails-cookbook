@@ -20,3 +20,12 @@ suites:
       - recipe[mokhan-myface::rbenv]
       - recipe[mokhan-myface::postgres]
     attributes:
+      postgres:
+        database: "mydb"
+        host: "localhost"
+        username: "rails"
+      postgresql:
+        password:
+          postgres: 'password'
+      rbenv:
+        ruby_version: '2.2.2'
