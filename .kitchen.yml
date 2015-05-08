@@ -18,4 +18,5 @@ suites:
       - recipe[mokhan-myface::unicorn]
       - recipe[mokhan-myface::nodejs]
       - recipe[mokhan-myface::rbenv]
+      - recipe[mokhan-myface::postgres]
     attributes:

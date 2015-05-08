@@ -1,4 +1,5 @@
 include_recipe "apt"
+include_recipe "build-essential"
 include_recipe "mokhan-myface::user"
 include_recipe "mokhan-myface::aws"
 include_recipe "mokhan-myface::monit"
