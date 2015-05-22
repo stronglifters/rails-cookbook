@@ -43,7 +43,7 @@ template "/etc/nginx/sites-available/#{configuration['domain']}" do
 end
 
 link "/etc/nginx/sites-enabled/#{configuration['domain']}" do
-  to "/etc/nginx/sites-available/cakeside"
+  to "/etc/nginx/sites-available/#{configuration['domain']}"
 end
 
 file "/etc/nginx/sites-enabled/default" do
