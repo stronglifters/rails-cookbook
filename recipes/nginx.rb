@@ -20,14 +20,18 @@ directory "/etc/nginx/ssl" do
   action :create
 end
 
-cookbook_file "/etc/nginx/ssl/#{configuration['domain']}.crt" do
-  source "#{node.chef_environment}.crt"
+template "/etc/nginx/ssl/#{configuration['domain']}.crt" do
+  source "ssl.crt"
   mode "0644"
+  variables(configuration)
+  notifies :restart, "service[nginx]"
 end
 
-cookbook_file "/etc/nginx/ssl/#{configuration['domain']}.key" do
-  source "#{node.chef_environment}.key"
+template "/etc/nginx/ssl/#{configuration['domain']}.key" do
+  source "ssl.key"
   mode "0644"
+  variables(configuration)
+  notifies :restart, "service[nginx]"
 end
 
 cookbook_file "/etc/nginx/conf.d/blacklist.conf" do
