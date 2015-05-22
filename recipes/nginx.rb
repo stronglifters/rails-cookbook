@@ -25,7 +25,7 @@ cookbook_file "/etc/nginx/ssl/#{configuration['domain']}.crt" do
   mode "0644"
 end
 
-cookbook_file "/etc/nginx/ssl/#{configuration[:domain]}.key" do
+cookbook_file "/etc/nginx/ssl/#{configuration['domain']}.key" do
   source "#{node.chef_environment}.key"
   mode "0644"
 end
@@ -35,14 +35,14 @@ cookbook_file "/etc/nginx/conf.d/blacklist.conf" do
   mode "0644"
 end
 
-template "/etc/nginx/sites-available/#{configuration[:domain]}" do
+template "/etc/nginx/sites-available/#{configuration['domain']}" do
   source "nginx_unicorn.erb"
   mode "0644"
   variables(configuration)
   notifies :restart, "service[nginx]"
 end
 
-link "/etc/nginx/sites-enabled/#{configuration[:domain]}" do
+link "/etc/nginx/sites-enabled/#{configuration['domain']}" do
   to "/etc/nginx/sites-available/cakeside"
 end
 

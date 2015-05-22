@@ -29,3 +29,28 @@ suites:
           postgres: 'password'
       rbenv:
         ruby_version: '2.2.2'
+  - name: web
+    run_list:
+      - recipe[mokhan-myface::default]
+      - recipe[mokhan-myface::rails]
+    attributes:
+      rbenv:
+        ruby_version: '2.2.2'
+      user:
+        username: 'rails'
+      aws:
+        username: 'rails'
+      monit:
+        application: 'mokhan-myface'
+      capistrano:
+        root_path: '/var/www/app/'
+        username: 'rails'
+        env:
+          app_api_key: 'api-key'
+          app_secret_key: 'secret-key'
+      nginx:
+        domain: 'www.mokhan.ca'
+      unicorn:
+        username: 'rails'
+        current_path: '/var/www/app/current'
+
