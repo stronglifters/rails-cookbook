@@ -21,14 +21,14 @@ directory "/etc/nginx/ssl" do
 end
 
 template "/etc/nginx/ssl/#{configuration['domain']}.crt" do
-  source "ssl.crt"
+  source "ssl.crt.erb"
   mode "0644"
   variables(configuration)
   notifies :restart, "service[nginx]"
 end
 
 template "/etc/nginx/ssl/#{configuration['domain']}.key" do
-  source "ssl.key"
+  source "ssl.key.erb"
   mode "0644"
   variables(configuration)
   notifies :restart, "service[nginx]"
