@@ -31,5 +31,5 @@ template "#{shared_path}/.env" do
   owner configuration['username']
   group configuration['username']
   mode "0600"
-  variables(configuration['env'])
+  variables(configuration)
 end
