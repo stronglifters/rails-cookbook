@@ -30,6 +30,7 @@ packages = [
   "pkg-config",
   "libffi-dev",
   "vim",
+  "unzip",
 ]
 
 packages.each do |item|
