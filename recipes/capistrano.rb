@@ -26,7 +26,7 @@ directories.each do |dir_name|
   end
 end
 
-template "#{shared_path}/.env" do
+template "#{shared_path}/.env.#{node.chef_environment}" do
   source "env.erb"
   owner configuration['username']
   group configuration['username']
@@ -40,7 +40,7 @@ template "#{shared_path}/config/database.yml" do
   variables({
     rails_env: node.chef_environment,
     database: node['postgres']["database"],
-    username: node['postgres']['user'],
+    username: node['postgres']['username'],
     password: node['postgres']["password"],
     host: node['postgres']['host'],
   })

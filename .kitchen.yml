@@ -53,4 +53,9 @@ suites:
       unicorn:
         username: 'rails'
         current_path: '/var/www/app/current'
+      postgres:
+        database: "mydb"
+        username: "rails"
+        password: "password"
+        host: "localhost"
 

@@ -57,9 +57,6 @@ default['unicorn']['rails_env'] = node.chef_environment
 default['monit']['application'] = 'app'
 #default['rbenv']['ruby_version'] = '2.2.2'
 default['rbenv']['rubies'] = [ "2.2.2" ]
-default['rbenv']['plugins'] = [
-  { 'name' => 'rbenv-gem-rehash', 'git_url' => 'https://github.com/sstephenson/rbenv-gem-rehash.git' }
-]
 default['aws']['username'] = node['user']['username']
 default['aws']['profiles']['default']['region'] = 'us-east-1'
 default['aws']['profiles']['default']['aws_access_key_id'] = 'secret'

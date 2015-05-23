@@ -1,8 +1,10 @@
 include_recipe "ruby_build::default"
 include_recipe "rbenv::system"
 
+configuration = node['rbenv']
+rbenv_global configuration['rubies'].first
+
 #include_recipe "apt"
-#configuration = node['rbenv']
 
 #items = [ "build-essential", "tklib", "zlib1g-dev", "libssl-dev", "libreadline-gplv2-dev", "libxml2", "libxml2-dev", "libxslt1-dev" ]
 #items.each do |item|
