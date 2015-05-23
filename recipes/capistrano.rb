@@ -33,3 +33,15 @@ template "#{shared_path}/.env" do
   mode "0600"
   variables(configuration)
 end
+
+template "#{shared_path}/config/database.yml" do
+  source "database.yml.erb"
+  mode "0664"
+  variables({
+    rails_env: node.chef_environment,
+    database: node['postgres']["database"],
+    username: node['postgres']['user'],
+    password: node['postgres']["password"],
+    host: node['postgres']['host'],
+  })
+end
