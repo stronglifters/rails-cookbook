@@ -1,7 +1,7 @@
 include_recipe "mokhan-myface::rbenv"
 include_recipe "mokhan-myface::capistrano"
 include_recipe "mokhan-myface::nginx"
-include_recipe "mokhan-myface::unicorn"
+include_recipe "mokhan-myface::puma"
 include_recipe "mokhan-myface::nodejs"
 
 [

@@ -50,7 +50,7 @@ suites:
           app_secret_key: 'secret-key'
       nginx:
         domain: 'www.mokhan.ca'
-      unicorn:
+      puma:
         username: 'rails'
         current_path: '/var/www/app/current'
       postgres:

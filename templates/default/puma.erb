@@ -1,23 +1,20 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          unicorn
+# Provides:          puma
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Start unicorn at boot time
+# Short-Description: Start puma at boot time
 # Description:       Run input app server
 ### END INIT INFO
 set -e
-# Example init script, this can be used with nginx, too,
-# since nginx and unicorn accept the same signals
 
-# Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
 APP_ROOT=<%= @current_path %>
-PID=$APP_ROOT/tmp/pids/unicorn.pid
+PID=$APP_ROOT/tmp/pids/puma.pid
 ENVIRONMENT=<%= @rails_env %>
-CMD="cd $APP_ROOT; bin/unicorn -E $ENVIRONMENT -D -c $APP_ROOT/config/unicorn.rb"
+CMD="cd $APP_ROOT; bin/puma -C config/puma_production.rb"
 action="$1"
 set -u
 
