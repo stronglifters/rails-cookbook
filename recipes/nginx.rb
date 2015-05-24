@@ -40,7 +40,7 @@ cookbook_file "/etc/nginx/conf.d/blacklist.conf" do
 end
 
 template "/etc/nginx/sites-available/#{configuration['domain']}" do
-  source "nginx_unicorn.erb"
+  source "nginx_unix.erb"
   mode "0644"
   variables(configuration)
   notifies :restart, "service[nginx]"
