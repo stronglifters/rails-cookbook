@@ -23,6 +23,7 @@ SCRIPTNAME=/etc/init.d/$NAME
 CONFIG=/etc/puma.conf
 JUNGLE=`cat $CONFIG`
 RUNPUMA=/usr/local/bin/run-puma
+PUMACTL=/usr/local/rbenv/shims/pumactl
 
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
@@ -98,14 +99,14 @@ do_stop() {
 do_stop_one() {
   log_daemon_msg "--> Stopping $1"
   PIDFILE=$1/tmp/pids/puma.pid
-  STATEFILE=$1/tmp/puma/state
+  STATEFILE=$1/tmp/pids/puma.state
   if [ -e $PIDFILE ]; then
     PID=`cat $PIDFILE`
     if [ "`ps -A -o pid= | grep -c $PID`" -eq 0 ]; then
       log_daemon_msg "---> Puma $1 isn't running."
     else
       log_daemon_msg "---> About to kill PID `cat $PIDFILE`"
-      pumactl --state $STATEFILE stop
+      $PUMACTL --state $STATEFILE stop
       # Many daemons don't delete their pidfiles when they exit.
       rm -f $PIDFILE $STATEFILE
     fi
@@ -135,7 +136,7 @@ do_restart_one() {
   
   if [ -e $PIDFILE ]; then
     log_daemon_msg "--> About to restart puma $1"
-    pumactl --state $dir/tmp/puma/state restart
+    $PUMACTL --state $dir/tmp/pids/puma.state restart
     # kill -s USR2 `cat $PIDFILE`
     # TODO Check if process exist
   else
@@ -175,7 +176,7 @@ do_status_one() {
   
   if [ -e $PIDFILE ]; then
     log_daemon_msg "--> About to status puma $1"
-    pumactl --state $dir/tmp/puma/state stats
+    $PUMACTL --state $dir/tmp/pids/puma.state stats
     # kill -s USR2 `cat $PIDFILE`
     # TODO Check if process exist
   else
