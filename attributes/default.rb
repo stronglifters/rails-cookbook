@@ -10,7 +10,8 @@ default['delayed_job']['current_path'] = "#{node['capistrano']['root_path']}/cur
 default['delayed_job']['rails_env'] = node.chef_environment
 default['nginx']['domain'] = 'www.example.com'
 default['nginx']['current_path'] = "#{node['capistrano']['root_path']}/current"
-default['nginx']['shared_path'] = "#{node['capistrano']['root_path']}/shared_path"
+default['nginx']['shared_path'] = "#{node['capistrano']['root_path']}/shared"
+default['nginx']['socket_file'] = "#{node['capistrano']['root_path']}/shared/tmp/sockets/puma.sock"
 default['nginx']['ssl']['key'] = <<-DATA
 -----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgQCbfQuXVpccfpOmBHGfkZVfgfOZpMLGX3XmxFrer20aGM6vG9JR
@@ -54,6 +55,9 @@ DATA
 default['unicorn']['username'] = node['user']['username']
 default['unicorn']['current_path'] = "#{node['capistrano']['root_path']}/current"
 default['unicorn']['rails_env'] = node.chef_environment
+default['puma']['username'] = node['user']['username']
+default['puma']['current_path'] = "#{node['capistrano']['root_path']}/current"
+default['puma']['rails_env'] = node.chef_environment
 default['monit']['application'] = 'app'
 #default['rbenv']['ruby_version'] = '2.2.2'
 default['rbenv']['rubies'] = [ "2.2.2" ]
