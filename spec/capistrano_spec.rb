@@ -3,6 +3,10 @@ describe 'mokhan-myface::capistrano' do
     ChefSpec::SoloRunner.new do |node|
       node.set['capistrano']['root_path'] = root_path
       node.set['capistrano']['username'] = username
+      node.set['postgres']['database'] = 'app'
+      node.set['postgres']['username'] = username
+      node.set['postgres']['password'] = 'password'
+      node.set['postgres']['host'] = 'localhost'
     end.converge(described_recipe)
   end
   let(:root_path) { "/var/www/#{FFaker::Internet.domain_name}"  }
@@ -42,7 +46,7 @@ describe 'mokhan-myface::capistrano' do
   end
 
   it 'lays down the .env template' do
-    expect(subject).to create_template("#{shared_path}/.env")
+    expect(subject).to create_template("#{shared_path}/.env._default")
       .with_owner(username)
       .with_group(username)
       .with_mode("0600")

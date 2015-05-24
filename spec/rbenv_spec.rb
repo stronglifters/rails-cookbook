@@ -4,15 +4,15 @@ describe "mokhan-myface::rbenv" do
     end.converge(described_recipe)
   end
 
-  it 'installs rbenv' do
+  xit 'installs rbenv' do
     expect(subject).to sync_git("/usr/local/rbenv")
   end
 
-  it 'creates the rbenv plugins directory' do
+  xit 'creates the rbenv plugins directory' do
     expect(subject).to create_directory('/usr/local/rbenv/plugins')
   end
 
-  it 'installs ruby-build' do
+  xit 'installs ruby-build' do
     expect(subject).to sync_git("/usr/local/rbenv/plugins/ruby-build")
   end
 end

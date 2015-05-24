@@ -6,6 +6,7 @@ describe "mokhan-myface::postgres" do
       node.set["postgres"]["username"] = database_user
       node.set["postgresql"]["password"]['postgres'] = database_password
       node.set["postgresql"]["config"] = {}
+      node.set["rbenv"]["install_pkgs"] = []
     end.converge(described_recipe)
   end
 

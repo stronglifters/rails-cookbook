@@ -19,12 +19,12 @@ describe 'mokhan-myface::nginx' do
   end
 
   it 'copies the ssl certificate' do
-    expect(chef_run).to create_cookbook_file("/etc/nginx/ssl/#{domain}.crt")
+    expect(chef_run).to create_template("/etc/nginx/ssl/#{domain}.crt")
       .with_mode("0644")
   end
 
   it 'copies the ssl private key' do
-    expect(chef_run).to create_cookbook_file("/etc/nginx/ssl/#{domain}.key")
+    expect(chef_run).to create_template("/etc/nginx/ssl/#{domain}.key")
       .with_mode("0644")
   end
 
