@@ -1,8 +1,8 @@
-include_recipe "mokhan-myface::rbenv"
-include_recipe "mokhan-myface::capistrano"
-include_recipe "mokhan-myface::nginx"
-include_recipe "mokhan-myface::puma"
-include_recipe "mokhan-myface::nodejs"
+include_recipe "stronglifters-rails::rbenv"
+include_recipe "stronglifters-rails::capistrano"
+include_recipe "stronglifters-rails::nginx"
+include_recipe "stronglifters-rails::puma"
+include_recipe "stronglifters-rails::nodejs"
 
 [
   'imagemagick',

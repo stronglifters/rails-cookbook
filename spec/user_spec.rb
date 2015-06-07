@@ -1,4 +1,4 @@
-describe "mokhan-myface::user" do
+describe "stronglifters-rails::user" do
   subject do
     ChefSpec::SoloRunner.new do |node|
       node.set['user']['username'] = username

@@ -1,4 +1,4 @@
-describe "mokhan-myface::unicorn" do
+describe "stronglifters-rails::unicorn" do
   subject do
     ChefSpec::SoloRunner.new do |node|
       node.set['unicorn'] = configuration

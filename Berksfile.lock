@@ -1,10 +1,10 @@
 DEPENDENCIES
-  mokhan-myface
-    path: .
-    metadata: true
   rbenv
     git: git://github.com/fnichol/chef-rbenv.git
     revision: 0a3018634bafe58ad21c6ee271af015220e444b9
+  stronglifters-rails
+    path: .
+    metadata: true
 
 GRAPH
   apt (2.7.0)
@@ -13,16 +13,9 @@ GRAPH
   database (4.0.6)
     postgresql (>= 1.0.0)
   java (1.31.0)
-  mokhan-myface (0.1.0)
-    apt (>= 0.0.0)
-    build-essential (>= 0.0.0)
-    database (>= 0.0.0)
-    postgresql (>= 0.0.0)
-    rbenv (>= 0.0.0)
-    ruby_build (>= 0.0.0)
   openssl (4.0.0)
     chef-sugar (>= 0.0.0)
-  postgresql (3.4.18)
+  postgresql (3.4.20)
     apt (>= 1.9.0)
     build-essential (>= 0.0.0)
     openssl (~> 4.0.0)
@@ -30,3 +23,10 @@ GRAPH
     java (> 1.4.0)
     ruby_build (>= 0.0.0)
   ruby_build (0.8.0)
+  stronglifters-rails (0.1.0)
+    apt (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    database (>= 0.0.0)
+    postgresql (>= 0.0.0)
+    rbenv (>= 0.0.0)
+    ruby_build (>= 0.0.0)

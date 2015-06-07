@@ -1,4 +1,4 @@
-describe 'mokhan-myface::nginx' do
+describe 'stronglifters-rails::nginx' do
   let(:domain) { "www.example.com" }
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|

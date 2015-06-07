@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/mokhan/myface.svg?branch=master)](https://travis-ci.org/mokhan/myface)
+[![Build Status](https://travis-ci.org/stronglifters/rails-cookbook.svg?branch=master)](https://travis-ci.org/stronglifters/rails-cookbook)
 
-mokhan-myface Cookbook
+stronglifters-rails Cookbook
 ======================
 TODO: Enter the cookbook description here.
 
@@ -13,14 +13,14 @@ TODO: List your cookbook requirements. Be sure to include any requirements this 
 
 e.g.
 #### packages
-- `toaster` - mokhan-myface needs toaster to brown your bagel.
+- `toaster` - stronglifters-rails needs toaster to brown your bagel.
 
 Attributes
 ----------
 TODO: List your cookbook attributes here.
 
 e.g.
-#### mokhan-myface::default
+#### stronglifters-rails::default
 <table>
   <tr>
     <th>Key</th>
@@ -29,7 +29,7 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['mokhan-myface']['bacon']</tt></td>
+    <td><tt>['stronglifters-rails']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -38,17 +38,17 @@ e.g.
 
 Usage
 -----
-#### mokhan-myface::default
+#### stronglifters-rails::default
 TODO: Write usage instructions for each cookbook.
 
 e.g.
-Just include `mokhan-myface` in your node's `run_list`:
+Just include `stronglifters-rails` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[mokhan-myface]"
+    "recipe[stronglifters-rails]"
   ]
 }
 ```

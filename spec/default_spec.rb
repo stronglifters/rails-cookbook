@@ -1,4 +1,4 @@
-describe 'mokhan-myface::default' do
+describe 'stronglifters-rails::default' do
   subject do
     ChefSpec::SoloRunner.new do |node|
     end.converge(described_recipe)

@@ -1,11 +1,11 @@
-mokhan-myface CHANGELOG
+stronglifters-rails CHANGELOG
 =======================
 
-This file is used to list changes made in each version of the mokhan-myface cookbook.
+This file is used to list changes made in each version of the stronglifters-rails cookbook.
 
 0.1.0
 -----
-- [your_name] - Initial release of mokhan-myface
+- [your_name] - Initial release of stronglifters-rails
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

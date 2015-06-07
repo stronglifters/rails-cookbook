@@ -1,4 +1,4 @@
-include_recipe "mokhan-myface::user"
+include_recipe "stronglifters-rails::user"
 
 configuration = node['capistrano']
 root_path = configuration['root_path']
@@ -33,7 +33,6 @@ template "#{shared_path}/.env.#{node.chef_environment}" do
   group configuration['username']
   mode "0600"
   variables(configuration)
-  notifies :restart, 'service[puma]', :delayed
 end
 
 execute "chown-rails" do

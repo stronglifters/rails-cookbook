@@ -1,4 +1,4 @@
-describe "mokhan-myface::rbenv" do
+describe "stronglifters-rails::rbenv" do
   subject do
     ChefSpec::SoloRunner.new do |node|
     end.converge(described_recipe)

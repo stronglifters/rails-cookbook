@@ -1,4 +1,4 @@
-describe "mokhan-myface::delayed_job" do
+describe "stronglifters-rails::delayed_job" do
   subject do
     ChefSpec::SoloRunner.new do |node|
       node.set['delayed_job'] = configuration#.merge(node['delayed_job'])

@@ -1,4 +1,4 @@
-include_recipe "mokhan-myface::rbenv"
+include_recipe "stronglifters-rails::rbenv"
 include_recipe "postgresql::server"
 include_recipe "postgresql::contrib"
 include_recipe "database::postgresql"

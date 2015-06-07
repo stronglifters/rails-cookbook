@@ -1,4 +1,4 @@
-describe "mokhan-myface::postgres" do
+describe "stronglifters-rails::postgres" do
   subject do
     ChefSpec::SoloRunner.new do |node|
       node.set["postgres"]["database"] = database_name

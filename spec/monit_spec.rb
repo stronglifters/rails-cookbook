@@ -1,4 +1,4 @@
-describe "mokhan-myface::monit" do
+describe "stronglifters-rails::monit" do
   subject do
     ChefSpec::SoloRunner.new do |node|
     end.converge(described_recipe)

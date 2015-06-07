@@ -1,4 +1,4 @@
-include_recipe "mokhan-myface::user"
+include_recipe "stronglifters-rails::user"
 
 configuration = node['delayed_job']
 

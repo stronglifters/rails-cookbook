@@ -1,4 +1,4 @@
-describe "mokhan-myface::nodejs" do
+describe "stronglifters-rails::nodejs" do
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|
       node.set["lsb"]["codename"] = "trusty"

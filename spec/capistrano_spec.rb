@@ -1,4 +1,4 @@
-describe "mokhan-myface::capistrano" do
+describe "stronglifters-rails::capistrano" do
   subject do
     ChefSpec::SoloRunner.new do |node|
       node.set["capistrano"]["root_path"] = root_path
