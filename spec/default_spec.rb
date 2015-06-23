@@ -37,7 +37,7 @@ describe 'stronglifters-rails::default' do
 
   it 'installs the base packages' do
     packages.each do |package|
-      expect(subject).to upgrade_package(package)
+      expect(subject).to install_package(package)
     end
   end
 end

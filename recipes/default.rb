@@ -35,6 +35,6 @@ packages = [
 
 packages.each do |item|
   package item do
-    action :upgrade
+    action :install
   end
 end
