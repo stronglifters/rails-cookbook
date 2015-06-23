@@ -16,7 +16,6 @@ describe 'stronglifters-rails::default' do
       "tklib",
       "zlib1g-dev",
       "libssl-dev",
-      "libreadline-gplv2-dev",
       "libxml2",
       "libxml2-dev",
       "libxslt1-dev",
