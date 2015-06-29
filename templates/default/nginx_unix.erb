@@ -11,10 +11,9 @@ server {
 }
 
 server {
-  listen 443 default_server;
+  listen 443 default_server ssl;
   server_name  <%= @domain %>;
   root         <%= @current_path %>/public;
-  ssl on;
   ssl_certificate             /etc/nginx/ssl/<%= @domain %>.crt;
   ssl_certificate_key         /etc/nginx/ssl/<%= @domain %>.key;
 
