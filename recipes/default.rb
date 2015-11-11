@@ -1,32 +1,10 @@
-include_recipe "apt"
-include_recipe "build-essential"
-include_recipe "stronglifters::user"
-include_recipe "stronglifters::aws"
+if redhat?
+  execute "yum update -y"
+else
+  execute "apt-get update -y"
+end
 
-package [
-  "curl",
-  "libcurl3", "libcurl3-gnutls", "libcurl4-openssl-dev",
-  "git-core",
-  "python-software-properties",
-  "build-essential",
-  "tklib",
-  "zlib1g-dev",
-  "libssl-dev",
-  "libxml2",
-  "libxml2-dev",
-  "libxslt1-dev",
-  "gawk",
-  "libreadline6-dev",
-  "libyaml-dev",
-  "libsqlite3-dev",
-  "autoconf",
-  "libgdbm-dev",
-  "libncurses5-dev",
-  "automake",
-  "libtool",
-  "bison",
-  "pkg-config",
-  "libffi-dev",
-  "vim",
-  "unzip",
-]
+package node['stronglifters']['packages']
+
+include_recipe "runit"
+include_recipe "stronglifters::ruby"

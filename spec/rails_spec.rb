@@ -1,8 +1,8 @@
-describe "stronglifters::capistrano" do
+describe "stronglifters::rails" do
   subject do
     ChefSpec::SoloRunner.new do |node|
-      node.set["capistrano"]["root_path"] = root_path
-      node.set["capistrano"]["username"] = username
+      node.set["stronglifters"]["root_path"] = root_path
+      node.set["stronglifters"]["username"] = username
       node.set["postgres"]["database"] = "app"
       node.set["postgres"]["username"] = username
       node.set["postgres"]["password"] = "password"
@@ -19,22 +19,14 @@ describe "stronglifters::capistrano" do
 
   it "creates the root directory for the application" do
     expect(subject).to create_directory(root_path)
-      .with_owner(username)
-      .with_group(username)
-      .with_mode("0755")
   end
 
   it "creates the shared directory for the application" do
     expect(subject).to create_directory("#{root_path}/shared")
-      .with_owner(username)
-      .with_group(username)
-      .with_mode("0755")
   end
 
   it "creates all the shared folders" do
     directories = [
-      "#{shared_path}/backups",
-      "#{shared_path}/bundle",
       "#{shared_path}/config",
       "#{shared_path}/log",
       "#{shared_path}/tmp/sockets",
@@ -44,16 +36,6 @@ describe "stronglifters::capistrano" do
     ]
     directories.each do |directory|
       expect(subject).to create_directory(directory)
-        .with_owner(username)
-        .with_group(username)
-        .with_mode("0755")
-    end
-  end
-
-  it "lays down the .env template" do
-    expect(subject).to create_template("#{shared_path}/.env._default")
-      .with_owner(username)
-      .with_group(username)
-      .with_mode("0600")
+   end
   end
 end

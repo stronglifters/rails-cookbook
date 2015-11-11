@@ -1,4 +1,3 @@
-include_recipe "stronglifters::rbenv"
 include_recipe "postgresql::server"
 include_recipe "postgresql::contrib"
 include_recipe "database::postgresql"
