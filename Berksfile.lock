@@ -7,5 +7,5 @@ GRAPH
   packagecloud (0.1.0)
   runit (1.7.4)
     packagecloud (>= 0.0.0)
-  stronglifters (0.1.0)
+  stronglifters (0.2.0)
     runit (>= 0.0.0)
