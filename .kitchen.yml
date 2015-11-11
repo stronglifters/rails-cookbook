@@ -1,4 +1,4 @@
-#<% require 'kitchen-sync' %>
+#<% require "kitchen-sync" %>
 ---
 driver:
   name: vagrant
@@ -19,8 +19,21 @@ suites:
       - recipe[stronglifters::rails]
     attributes:
       env:
-        app_api_key: 'api-key'
-        app_secret_key: 'secret-key'
+        app_api_key: "api-key"
+        app_secret_key: "secret-key"
+      postgres:
+        database: "mydb"
+        username: "rails"
+        password: "password"
+        host: "localhost"
+  - name: db
+    run_list:
+      - recipe[stronglifters::default]
+      - recipe[stronglifters::postgres]
+    attributes:
+      postgresql:
+        password:
+          postgres: "iloverandompasswordsbutthiswilldo"
       postgres:
         database: "mydb"
         username: "rails"
