@@ -29,11 +29,13 @@ else
     libcurl4-openssl-dev
     libffi-dev
     libreadline-dev
+    libsqlite3-dev
     libssl-dev
     libxml2-dev
     libxslt1-dev
     libyaml-dev
     python-software-properties
+    sqlite3
     zlib1g-dev
   }
 end
@@ -43,16 +45,22 @@ default['stronglifters']['aws']['profiles']['default']['region'] = 'us-east-1'
 default['stronglifters']['aws']['profiles']['default']['aws_access_key_id'] = 'secret'
 default['stronglifters']['aws']['profiles']['default']['aws_secret_access_key'] = 'secret'
 default['stronglifters']['root_path'] = "/var/www/#{node['stronglifters']['application_name']}"
-default['stronglifters']['current_path'] = "#{node['stronglifters']['root_path']}/current"
 default['stronglifters']['nginx']['blacklisted_ips'] = []
 default['stronglifters']['nginx']['domain'] = 'www.example.com'
 default['stronglifters']['ruby_version'] = '2.2.3'
 default['stronglifters']['username'] = 'rails'
 
+pg_connection_string =
+  if node['postgres'].nil? == false
+    "postgres://#{node['postgres']['username']}:#{node['postgres']['password']}@#{node['postgres']['host']}/#{node['postgres']['database']}"
+  else
+    nil
+  end
 default['stronglifters']['env'] = {
   asset_host: '',
+  database_url: pg_connection_string,
   rails_env: 'production',
-  secret_token: ''
+  secret_token: '',
 }
 
 default['stronglifters']['nginx']['ssl']['key'] = <<-SELFSIGNED

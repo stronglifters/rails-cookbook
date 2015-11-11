@@ -40,7 +40,7 @@ http {
   server {
     listen 443 default_server ssl;
     server_name  <%= @domain %>;
-    root         <%= node['stronglifters']['current_path'] %>/public;
+    root         <%= node['stronglifters']['root_path'] %>/current/public;
     ssl_certificate             /etc/nginx/ssl/<%= @domain %>.crt;
     ssl_certificate_key         /etc/nginx/ssl/<%= @domain %>.key;
 

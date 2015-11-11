@@ -3,6 +3,7 @@ git "/usr/local/rbenv" do
 end
 
 cookbook_file "/etc/profile.d/rbenv.sh"
+cookbook_file "/etc/gemrc"
 directory "/usr/local/rbenv/plugins"
 
 git "/usr/local/rbenv/plugins/ruby-build" do

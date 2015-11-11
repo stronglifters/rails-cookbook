@@ -13,14 +13,40 @@ suites:
   - name: default
     run_list:
       - recipe[stronglifters::default]
+      - recipe[stronglifters::web]
+      - recipe[stronglifters::worker]
+      - recipe[stronglifters::postgres]
+    attributes:
+      stronglifters:
+        application_name: "stronglifters"
+        ruby_version: "2.2.3"
+        username: "vagrant"
+      postgresql:
+        password:
+          postgres: "iloverandompasswordsbutthiswilldo"
+      postgres:
+        database: "mydb"
+        username: "rails"
+        password: "password"
+        host: "localhost"
   - name: web
     run_list:
       - recipe[stronglifters::default]
-      - recipe[stronglifters::rails]
+      - recipe[stronglifters::web]
     attributes:
       env:
         app_api_key: "api-key"
         app_secret_key: "secret-key"
+      postgres:
+        database: "mydb"
+        username: "rails"
+        password: "password"
+        host: "localhost"
+  - name: worker
+    run_list:
+      - recipe[stronglifters::default]
+      - recipe[stronglifters::worker]
+    attributes:
       postgres:
         database: "mydb"
         username: "rails"
