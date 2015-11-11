@@ -1,8 +1,8 @@
-include_recipe "stronglifters-rails::rbenv"
-include_recipe "stronglifters-rails::capistrano"
-include_recipe "stronglifters-rails::nginx"
-include_recipe "stronglifters-rails::puma"
-include_recipe "stronglifters-rails::nodejs"
+include_recipe "stronglifters::rbenv"
+include_recipe "stronglifters::capistrano"
+include_recipe "stronglifters::nginx"
+include_recipe "stronglifters::puma"
+include_recipe "stronglifters::nodejs"
 
 [
   'imagemagick',

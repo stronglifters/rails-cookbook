@@ -1,4 +1,4 @@
-describe "stronglifters-rails::nodejs" do
+describe "stronglifters::nodejs" do
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|
       node.set["lsb"]["codename"] = "trusty"

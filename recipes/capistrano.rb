@@ -1,4 +1,4 @@
-include_recipe "stronglifters-rails::user"
+include_recipe "stronglifters::user"
 
 configuration = node['capistrano']
 root_path = configuration['root_path']

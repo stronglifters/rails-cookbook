@@ -1,4 +1,3 @@
-include_recipe "apt"
 configuration = node['aws']
 
 package 'python-pip' do

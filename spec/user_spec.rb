@@ -1,4 +1,4 @@
-describe "stronglifters-rails::user" do
+describe "stronglifters::user" do
   subject do
     ChefSpec::SoloRunner.new do |node|
       node.set['user']['username'] = username

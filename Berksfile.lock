@@ -1,5 +1,5 @@
 DEPENDENCIES
-  stronglifters-rails
+  stronglifters
     path: .
     metadata: true
 
@@ -21,7 +21,7 @@ GRAPH
   ruby_rbenv (1.0.1)
     java (> 1.4.0)
     ruby_build (>= 0.0.0)
-  stronglifters-rails (0.1.0)
+  stronglifters (0.1.0)
     apt (>= 0.0.0)
     build-essential (>= 0.0.0)
     database (>= 0.0.0)

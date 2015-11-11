@@ -1,8 +1,8 @@
-name             'stronglifters-rails'
+name             'stronglifters'
 maintainer       'mo khan'
 maintainer_email 'mo@mokhan.ca'
 license          'All rights reserved'
-description      'Installs/Configures stronglifters-rails'
+description      'Installs/Configures stronglifters'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
 

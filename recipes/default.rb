@@ -1,10 +1,9 @@
 include_recipe "apt"
 include_recipe "build-essential"
-include_recipe "stronglifters-rails::user"
-include_recipe "stronglifters-rails::aws"
-include_recipe "stronglifters-rails::monit"
+include_recipe "stronglifters::user"
+include_recipe "stronglifters::aws"
 
-packages = [
+package [
   "curl",
   "libcurl3", "libcurl3-gnutls", "libcurl4-openssl-dev",
   "git-core",
@@ -31,9 +30,3 @@ packages = [
   "vim",
   "unzip",
 ]
-
-packages.each do |item|
-  package item do
-    action :install
-  end
-end

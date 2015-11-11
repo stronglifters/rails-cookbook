@@ -1,4 +1,4 @@
-describe 'stronglifters-rails::nginx' do
+describe 'stronglifters::nginx' do
   let(:domain) { "www.example.com" }
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|

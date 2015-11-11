@@ -1,4 +1,4 @@
-describe "stronglifters-rails::rbenv" do
+describe "stronglifters::rbenv" do
   subject do
     ChefSpec::SoloRunner.new do |node|
     end.converge(described_recipe)

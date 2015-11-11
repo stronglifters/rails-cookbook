@@ -1,4 +1,4 @@
-describe 'stronglifters-rails::default' do
+describe 'stronglifters::default' do
   subject do
     ChefSpec::SoloRunner.new do |node|
     end.converge(described_recipe)

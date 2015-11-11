@@ -1,4 +1,4 @@
-describe "stronglifters-rails::puma" do
+describe "stronglifters::puma" do
   subject do
     ChefSpec::SoloRunner.new do |node|
       node.set['puma'] = configuration
