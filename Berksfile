@@ -1,5 +1,3 @@
-source "https://api.berkshelf.com"
+source "https://supermarket.chef.io"
 
 metadata
-
-cookbook "rbenv", git: 'git://github.com/fnichol/chef-rbenv.git'
