@@ -7,5 +7,7 @@ runit_service "sidekiq" do
   default_logger true
   env node["stronglifters"]["env"]
   log true
+  log_size 1_000_000
+  log_num 31
   retries 3
 end if File.exists?("#{current_path}/Gemfile")
