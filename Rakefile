@@ -4,4 +4,4 @@ require 'foodcritic'
 RSpec::Core::RakeTask.new(:spec)
 FoodCritic::Rake::LintTask.new
 
-task default: [:foodcritic, :spec]
+task default: [:spec]

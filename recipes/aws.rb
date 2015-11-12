@@ -12,11 +12,9 @@ end
 
 configuration = node["stronglifters"]["aws"]
 template "/home/#{username}/.aws/config" do
-  source "aws/config.erb"
   variables(configuration)
 end
 
 template "/home/#{username}/.aws/credentials" do
-  source "aws/credentials.erb"
   variables(configuration)
 end
