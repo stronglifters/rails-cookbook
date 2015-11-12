@@ -1,18 +1,70 @@
-default['user']['username'] = 'rails'
-default['capistrano']['root_path'] = '/var/www/app'
-default['capistrano']['username'] = node['user']['username']
-default['capistrano']['env'] = {
-  asset_host: '',
-  secret_token: ''
+if node.platform_family == "rhel"
+  default['stronglifters']['packages'] = %w{
+    autoconf
+    automake
+    bison
+    bzip2
+    ca-certificates
+    gcc-c++
+    git
+    libffi-devel
+    libtool
+    libxml2
+    libxml2-devel
+    libxslt
+    libxslt-devel
+    make
+    openssl-devel
+    patch
+    readline
+    readline-devel
+    zlib
+    zlib-devel
+  }
+else
+  default['stronglifters']['packages'] = %w{
+    build-essential
+    curl
+    git-core
+    libcurl4-openssl-dev
+    libffi-dev
+    libreadline-dev
+    libsqlite3-dev
+    libssl-dev
+    libxml2-dev
+    libxslt1-dev
+    libyaml-dev
+    memcached
+    python-software-properties
+    sqlite3
+    zlib1g-dev
+  }
+end
+
+default['stronglifters']['application_name'] = "app"
+default['stronglifters']['aws']['profiles']['default']['region'] = 'us-east-1'
+default['stronglifters']['aws']['profiles']['default']['aws_access_key_id'] = 'secret'
+default['stronglifters']['aws']['profiles']['default']['aws_secret_access_key'] = 'secret'
+default['stronglifters']['root_path'] = "/var/www/#{node['stronglifters']['application_name']}"
+default['stronglifters']['nginx']['blacklisted_ips'] = []
+default['stronglifters']['nginx']['domain'] = 'www.example.com'
+default['stronglifters']['ruby_version'] = '2.2.3'
+default['stronglifters']['username'] = 'rails'
+
+pg_connection_string =
+  if node['postgres'].nil? == false
+    "postgres://#{node['postgres']['username']}:#{node['postgres']['password']}@#{node['postgres']['host']}/#{node['postgres']['database']}"
+  else
+    nil
+  end
+default['stronglifters']['env'] = {
+  ASSET_HOST: '',
+  DATABASE_URL: pg_connection_string,
+  RAILS_ENV: 'production',
+  SECRET_TOKEN: '',
 }
-default['delayed_job']['username'] = node['user']['username']
-default['delayed_job']['current_path'] = "#{node['capistrano']['root_path']}/current"
-default['delayed_job']['rails_env'] = node.chef_environment
-default['nginx']['domain'] = 'www.example.com'
-default['nginx']['current_path'] = "#{node['capistrano']['root_path']}/current"
-default['nginx']['shared_path'] = "#{node['capistrano']['root_path']}/shared"
-default['nginx']['socket_file'] = "#{node['capistrano']['root_path']}/shared/tmp/sockets/puma.sock"
-default['nginx']['ssl']['key'] = <<-DATA
+
+default['stronglifters']['nginx']['ssl']['key'] = <<-SELFSIGNED
 -----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgQCbfQuXVpccfpOmBHGfkZVfgfOZpMLGX3XmxFrer20aGM6vG9JR
 75QmD28bnDnQPaLGMzCmsg6nhi0Lz+c+u9DdCKRVgZbCK5MJo7FsVRLR9vEdhGkT
@@ -28,8 +80,8 @@ AZ0Y1dz0bSiO0BIjjAwSKe8Nz+xPiSn/xjf/g0ufmCazi9SDZwQ5TyJjjfxDJ/7p
 KhQWzwbGnN2FUW9r2QJADT7SMkMHb9bOgUJnLehLQY0sONrfAMJ7NieJk24PyX83
 bBV1YGbhWentkyZBkgcvYqVlxGTPvIao1x69xSJhOw==
 -----END RSA PRIVATE KEY-----
-DATA
-default['nginx']['ssl']['crt'] = <<-DATA
+SELFSIGNED
+default['stronglifters']['nginx']['ssl']['crt'] = <<-SELFSIGNED
 -----BEGIN CERTIFICATE-----
 MIIDYzCCAsygAwIBAgIJAKQbJHHxbt63MA0GCSqGSIb3DQEBBQUAMH8xCzAJBgNV
 BAYTAkNBMRAwDgYDVQQIEwdBbGJlcnRhMRAwDgYDVQQHEwdDYWxnYXJ5MRYwFAYD
@@ -51,17 +103,4 @@ wF+ITsPDm1nWbGZ8h8tVc6VYdHPyAX95X9/F9h1u2z8E36A5CQ9aTaS6aU1KnNTh
 Mthn8jGpgIJeFo2Jphx/QjEVUrLQdPg3pN00uJOTa8Sk4OEWSiqw5P9w0tj0Wicz
 60evIdcHAQ==
 -----END CERTIFICATE-----
-DATA
-default['unicorn']['username'] = node['user']['username']
-default['unicorn']['current_path'] = "#{node['capistrano']['root_path']}/current"
-default['unicorn']['rails_env'] = node.chef_environment
-default['puma']['username'] = node['user']['username']
-default['puma']['current_path'] = "#{node['capistrano']['root_path']}/current"
-default['puma']['rails_env'] = node.chef_environment
-default['monit']['application'] = 'app'
-#default['rbenv']['ruby_version'] = '2.2.2'
-default['rbenv']['rubies'] = [ "2.2.2" ]
-default['aws']['username'] = node['user']['username']
-default['aws']['profiles']['default']['region'] = 'us-east-1'
-default['aws']['profiles']['default']['aws_access_key_id'] = 'secret'
-default['aws']['profiles']['default']['aws_secret_access_key'] = 'secret'
+SELFSIGNED

@@ -1,0 +1,6 @@
+#!/bin/sh
+exec 2>&1
+source /etc/profile.d/rbenv.sh
+envdir=$(pwd)/env
+cd <%= node['stronglifters']['root_path'] %>/current
+exec chpst -u <%= node['stronglifters']['username'] %> -e $envdir /usr/local/rbenv/shims/bundle exec sidekiq

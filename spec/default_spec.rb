@@ -1,42 +1,13 @@
-describe 'stronglifters-rails::default' do
+describe "stronglifters::default" do
   subject do
     ChefSpec::SoloRunner.new do |node|
+      node.set["stronglifters"]["packages"] = packages
     end.converge(described_recipe)
   end
 
-  let(:packages) do
-    [
-      "curl",
-      "libcurl3",
-      "libcurl3-gnutls",
-      "libcurl4-openssl-dev",
-      "git-core",
-      "python-software-properties",
-      "build-essential",
-      "tklib",
-      "zlib1g-dev",
-      "libssl-dev",
-      "libxml2",
-      "libxml2-dev",
-      "libxslt1-dev",
-      "gawk",
-      "libreadline6-dev",
-      "libyaml-dev",
-      "autoconf",
-      "libgdbm-dev",
-      "libncurses5-dev",
-      "automake",
-      "libtool",
-      "bison",
-      "pkg-config",
-      "libffi-dev",
-      "vim",
-    ]
-  end
+  let(:packages) { [ "vim" ] }
 
-  it 'installs the base packages' do
-    packages.each do |package|
-      expect(subject).to install_package(package)
-    end
+  it "installs the base packages" do
+    expect(subject).to install_package(packages)
   end
 end

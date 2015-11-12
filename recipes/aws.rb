@@ -1,29 +1,20 @@
-include_recipe "apt"
-configuration = node['aws']
+package "python-pip"
+execute "pip install awscli"
 
-package 'python-pip' do
-  action :install
-end
-
-execute 'install awscli' do
-  command 'pip install awscli'
-  action :run
-end
-
-directory "/home/#{configuration["username"]}/.aws/" do
-  owner configuration['username']
-  group configuration['username']
+username = node["stronglifters"]["username"]
+directory "/home/#{username}/.aws/" do
+  owner username
+  group username
   mode "0755"
   recursive true
   action :create
 end
 
-template "/home/#{configuration["username"]}/.aws/config" do
-  source "aws/config.erb"
+configuration = node["stronglifters"]["aws"]
+template "/home/#{username}/.aws/config" do
   variables(configuration)
 end
 
-template "/home/#{configuration["username"]}/.aws/credentials" do
-  source "aws/credentials.erb"
+template "/home/#{username}/.aws/credentials" do
   variables(configuration)
 end

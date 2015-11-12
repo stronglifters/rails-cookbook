@@ -1,0 +1,91 @@
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log;
+pid /var/run/nginx.pid;
+
+events {
+  worker_connections 1024;
+}
+
+http {
+  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
+
+  access_log  /var/log/nginx/access.log  main;
+
+  sendfile            on;
+  tcp_nopush          on;
+  tcp_nodelay         on;
+  keepalive_timeout   65;
+  types_hash_max_size 2048;
+
+  include             /etc/nginx/mime.types;
+  default_type        application/octet-stream;
+
+  client_max_body_size 4G;
+  <% @blacklisted_ips.each do |ip| %>
+  deny <%= ip %>;
+  <% end %>
+
+  upstream backend {
+    server 127.0.0.1:9292 fail_timeout=0;
+  }
+
+  server {
+    listen 80 deferred;
+    server_name <%= @domain %>;
+    server_tokens off;
+    rewrite        ^ https://$server_name$request_uri? permanent;
+  }
+  server {
+    listen 443 default_server ssl;
+    server_name  <%= @domain %>;
+    server_tokens off;
+    root         <%= node['stronglifters']['root_path'] %>/current/public;
+    ssl_certificate             /etc/nginx/ssl/<%= @domain %>.crt;
+    ssl_certificate_key         /etc/nginx/ssl/<%= @domain %>.key;
+
+    ssl_session_timeout 5m;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH;
+    ssl_prefer_server_ciphers on;
+    ssl_session_cache shared:SSL:10m;
+    #ssl_stapling on;
+    #ssl_stapling_verify on;
+    #resolver 8.8.8.8 8.8.4.4 valid=300s;
+    #resolver_timeout 5s;
+
+    error_log /var/log/nginx/<%= @domain %>.error.log;
+    access_log /var/log/nginx/<%= @domain %>.access.log;
+
+    # enable HTST
+    add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload";
+
+    # disable loading in an iframe
+    add_header X-Frame-Options "DENY";
+
+    if ($host = '<%= @domain.gsub(/www/, '') %>' ) {
+      rewrite  ^/(.*)$  https://<%= @domain %>/$1  permanent;
+    }
+
+    try_files $uri/index.html $uri @application;
+    location ^~ /assets/ {
+      gzip_static on;
+      expires max;
+      add_header Cache-Control public;
+    }
+
+    location @application {
+      proxy_set_header X_FORWARDED_PROTO https;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header HOST $http_host;
+      proxy_set_header X-Url-Scheme $scheme;
+      proxy_redirect off;
+      proxy_pass http://backend;
+    }
+
+    error_page 500 502 503 504 /500.html;
+    keepalive_timeout 10;
+  }
+}

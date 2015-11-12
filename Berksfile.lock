@@ -1,32 +1,24 @@
 DEPENDENCIES
-  rbenv
-    git: git://github.com/fnichol/chef-rbenv.git
-    revision: 0a3018634bafe58ad21c6ee271af015220e444b9
-  stronglifters-rails
+  stronglifters
     path: .
     metadata: true
 
 GRAPH
-  apt (2.7.0)
-  build-essential (2.2.3)
-  chef-sugar (3.1.0)
-  database (4.0.6)
+  apt (2.9.2)
+  build-essential (2.2.4)
+  chef-sugar (3.1.1)
+  database (4.0.9)
     postgresql (>= 1.0.0)
-  java (1.31.0)
-  openssl (4.0.0)
-    chef-sugar (>= 0.0.0)
-  postgresql (3.4.20)
+  openssl (4.4.0)
+    chef-sugar (>= 3.1.1)
+  packagecloud (0.1.0)
+  postgresql (3.4.21)
     apt (>= 1.9.0)
     build-essential (>= 0.0.0)
-    openssl (~> 4.0.0)
-  rbenv (0.7.3)
-    java (> 1.4.0)
-    ruby_build (>= 0.0.0)
-  ruby_build (0.8.0)
-  stronglifters-rails (0.1.0)
-    apt (>= 0.0.0)
-    build-essential (>= 0.0.0)
+    openssl (~> 4.0)
+  runit (1.7.4)
+    packagecloud (>= 0.0.0)
+  stronglifters (0.2.0)
     database (>= 0.0.0)
     postgresql (>= 0.0.0)
-    rbenv (>= 0.0.0)
-    ruby_build (>= 0.0.0)
+    runit (>= 0.0.0)

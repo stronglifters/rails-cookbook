@@ -1,4 +1,4 @@
-describe "stronglifters-rails::postgres" do
+describe "stronglifters::postgres" do
   subject do
     ChefSpec::SoloRunner.new do |node|
       node.set["postgres"]["database"] = database_name
@@ -6,7 +6,6 @@ describe "stronglifters-rails::postgres" do
       node.set["postgres"]["username"] = database_user
       node.set["postgresql"]["password"]['postgres'] = database_password
       node.set["postgresql"]["config"] = {}
-      node.set["rbenv"]["install_pkgs"] = []
     end.converge(described_recipe)
   end
 
