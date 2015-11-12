@@ -1,7 +1,7 @@
-package 'python-pip'
-execute 'pip install awscli'
+package "python-pip"
+execute "pip install awscli"
 
-username = node['stronglifters']['username']
+username = node["stronglifters"]["username"]
 directory "/home/#{username}/.aws/" do
   owner username
   group username
@@ -10,7 +10,7 @@ directory "/home/#{username}/.aws/" do
   action :create
 end
 
-configuration = node['stronglifters']['aws']
+configuration = node["stronglifters"]["aws"]
 template "/home/#{username}/.aws/config" do
   source "aws/config.erb"
   variables(configuration)

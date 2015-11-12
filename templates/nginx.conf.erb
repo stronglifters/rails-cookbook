@@ -35,11 +35,13 @@ http {
   server {
     listen 80 deferred;
     server_name <%= @domain %>;
+    server_tokens off;
     rewrite        ^ https://$server_name$request_uri? permanent;
   }
   server {
     listen 443 default_server ssl;
     server_name  <%= @domain %>;
+    server_tokens off;
     root         <%= node['stronglifters']['root_path'] %>/current/public;
     ssl_certificate             /etc/nginx/ssl/<%= @domain %>.crt;
     ssl_certificate_key         /etc/nginx/ssl/<%= @domain %>.key;
