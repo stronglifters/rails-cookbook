@@ -57,10 +57,10 @@ pg_connection_string =
     nil
   end
 default['stronglifters']['env'] = {
-  asset_host: '',
-  database_url: pg_connection_string,
-  rails_env: 'production',
-  secret_token: '',
+  ASSET_HOST: '',
+  DATABASE_URL: pg_connection_string,
+  RAILS_ENV: 'production',
+  SECRET_TOKEN: '',
 }
 
 default['stronglifters']['nginx']['ssl']['key'] = <<-SELFSIGNED

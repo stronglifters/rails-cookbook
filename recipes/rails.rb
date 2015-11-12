@@ -16,6 +16,10 @@ directory root_path do
   recursive true
 end
 
+template "/home/#{node["stronglifters"]["username"]}/.profile" do
+  variables(env: node["stronglifters"]["env"])
+end
+
 gem "foreman"
 
 runit_service "foreman" do
