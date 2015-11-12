@@ -34,6 +34,7 @@ else
     libxml2-dev
     libxslt1-dev
     libyaml-dev
+    memcached
     python-software-properties
     sqlite3
     zlib1g-dev
