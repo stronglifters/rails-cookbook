@@ -20,22 +20,4 @@ describe "stronglifters::rails" do
   it "creates the root directory for the application" do
     expect(subject).to create_directory(root_path)
   end
-
-  it "creates the shared directory for the application" do
-    expect(subject).to create_directory("#{root_path}/shared")
-  end
-
-  it "creates all the shared folders" do
-    directories = [
-      "#{shared_path}/config",
-      "#{shared_path}/log",
-      "#{shared_path}/tmp/sockets",
-      "#{shared_path}/tmp/pids",
-      "#{shared_path}/tmp/cache",
-      "#{root_path}/releases"
-    ]
-    directories.each do |directory|
-      expect(subject).to create_directory(directory)
-   end
-  end
 end
