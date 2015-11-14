@@ -10,4 +10,8 @@ describe "stronglifters::default" do
   it "installs the base packages" do
     expect(subject).to install_package(packages)
   end
+
+  it "installs logrotate" do
+    expect(subject).to install_package("logrotate")
+  end
 end

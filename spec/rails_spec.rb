@@ -17,7 +17,7 @@ describe "stronglifters::rails" do
     stub_command("stat -c %U #{root_path} | grep root").and_return(nil)
   end
 
-  it "creates the root directory for the application" do
-    expect(subject).to create_directory(root_path)
+  it "creates the sharec directory for the application" do
+    expect(subject).to create_directory("#{shared_path}/config")
   end
 end
