@@ -14,21 +14,20 @@ template "/etc/nginx/nginx.conf" do
   notifies :restart, 'service[nginx]'
 end
 
-directory "/etc/nginx/ssl" do
+file "/etc/ssl/certs/#{configuration['domain']}.crt" do
   mode "0644"
-end
-
-template "/etc/nginx/ssl/#{configuration['domain']}.crt" do
-  source "ssl.crt.erb"
-  mode "0644"
-  variables(configuration)
+  content configuration['ssl']['crt']
   notifies :restart, "service[nginx]"
 end
 
-template "/etc/nginx/ssl/#{configuration['domain']}.key" do
-  source "ssl.key.erb"
+file "/etc/ssl/private/#{configuration['domain']}.key" do
   mode "0644"
-  variables(configuration)
+  content configuration['ssl']['key']
+  notifies :restart, "service[nginx]"
+end
+
+execute "cd /etc/ssl/certs && openssl dhparam -out dhparam.pem 2048" do
+  not_if { ::File.exist?('/etc/ssl/certs/dhparam.pem') }
   notifies :restart, "service[nginx]"
 end
 

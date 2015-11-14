@@ -10,16 +10,12 @@ describe "stronglifters::nginx" do
     expect(subject).to install_package("nginx")
   end
 
-  it "creates a directory for the ssl certificates" do
-    expect(subject).to create_directory("/etc/nginx/ssl")
-  end
-
   it "copies the ssl certificate" do
-    expect(subject).to create_template("/etc/nginx/ssl/#{domain}.crt")
+    expect(subject).to create_file("/etc/ssl/certs/#{domain}.crt")
   end
 
   it "copies the ssl private key" do
-    expect(subject).to create_template("/etc/nginx/ssl/#{domain}.key")
+    expect(subject).to create_file("/etc/ssl/private/#{domain}.key")
   end
 
   it "adds the configuration for the website" do
