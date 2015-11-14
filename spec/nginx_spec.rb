@@ -31,10 +31,6 @@ describe "stronglifters::nginx" do
     expect(subject).to start_service("nginx")
   end
 
-  it "installs logrotate" do
-    expect(subject).to install_package("logrotate")
-  end
-
   it "creates the log directory for nginx" do
     expect(subject).to create_directory("/var/log/nginx")
   end

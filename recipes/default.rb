@@ -5,6 +5,7 @@ else
 end
 
 package node['stronglifters']['packages']
+package "logrotate"
 
 include_recipe "runit"
 include_recipe "stronglifters::ruby"

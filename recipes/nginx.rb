@@ -4,7 +4,6 @@ if redhat?
 end
 
 package "nginx"
-package "logrotate"
 user "nginx"
 
 configuration = node['stronglifters']['nginx']
