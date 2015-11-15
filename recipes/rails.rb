@@ -24,6 +24,9 @@ end
 file "#{shared_path}/config/database.yml" do
   content <<-YAML
 production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   url: <%= ENV['DATABASE_URL'] %>
 YAML
 end
