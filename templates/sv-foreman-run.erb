@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 exec 2>&1
 source /etc/profile.d/rbenv.sh
 envdir=$(pwd)/env
+user=<%= node['stronglifters']['username'] %>
 cd <%= node['stronglifters']['root_path'] %>/current
-exec chpst -u <%= node['stronglifters']['username'] %> \
-  -e $envdir /usr/local/rbenv/shims/foreman start
+exec chpst -u $user -e $envdir foreman start
