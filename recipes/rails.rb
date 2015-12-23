@@ -10,7 +10,7 @@ template "/etc/logrotate.d/rails" do
   variables({ shared_path: shared_path })
 end
 
-template "/home/#{node["stronglifters"]["username"]}/.profile" do
+template "/etc/profile.d/rails.sh" do
   variables(env: node["stronglifters"]["env"])
 end
 
