@@ -1,5 +1,5 @@
 include_recipe "stronglifters::user"
-include_recipe "stronglifters::aws"
+aws_cli(node["stronglifters"]["username"])
 
 root_path = node["stronglifters"]["root_path"]
 shared_path = File.join(root_path, "shared")

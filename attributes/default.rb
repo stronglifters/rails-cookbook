@@ -50,6 +50,7 @@ default['stronglifters']['nginx']['blacklisted_ips'] = []
 default['stronglifters']['nginx']['domain'] = 'www.example.com'
 default['stronglifters']['ruby_version'] = '2.2.3'
 default['stronglifters']['username'] = 'rails'
+default['stronglifters']['s3_backup_path'] = 's3://bucket/backups/'
 
 pg_connection_string =
   if node['postgres'].nil? == false

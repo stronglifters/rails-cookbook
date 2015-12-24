@@ -48,13 +48,20 @@ end
 template "/etc/postgresql/pg_backup.config" do
   user "postgres"
   group "postgres"
-  variables(backup_dir: "#{backups_dir}/")
+  variables({
+    backup_dir: "#{backups_dir}/",
+    s3_backup_path: node['stronglifters']['s3_backup_path'],
+  })
 end
 
 file "/var/lib/postgresql/.pgpass" do
   content "localhost:5432:*:postgres:#{node["postgresql"]["password"]["postgres"]}"
+  group "postgres"
   mode "0600"
+  user "postgres"
 end
+
+aws_cli("postgres")
 
 cron 'pg_backups' do
   action :create
