@@ -61,14 +61,14 @@ file "/var/lib/postgresql/.pgpass" do
   user "postgres"
 end
 
-#aws_cli("postgres")
+aws_config = node['stronglifters']['aws']['profiles']['default']
 
 cron 'pg_backups' do
   action :create
   command "#{backups_dir}/pg_backup_rotated.sh -c /etc/postgresql/pg_backup.config"
   environment({
-    "AWS_ACCESS_KEY_ID" => node['stronglifters']['aws']['profiles']['default']['aws_access_key_id'],
-    "AWS_SECRET_ACCESS_KEY" => node['stronglifters']['aws']['profiles']['default']['aws_secret_access_key'],
+    "AWS_ACCESS_KEY_ID" => aws_config['aws_access_key_id'],
+    "AWS_SECRET_ACCESS_KEY" => aws_config['aws_secret_access_key'],
     "PGPASSFILE" => "/var/lib/postgresql/.pgpass",
     "PGPASSWORD" => node["postgresql"]["password"]["postgres"],
   })
