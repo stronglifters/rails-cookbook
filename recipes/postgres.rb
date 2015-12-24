@@ -48,7 +48,7 @@ end
 template "/etc/postgresql/pg_backup.config" do
   user "postgres"
   group "postgres"
-  variables(backup_dir: backups_dir)
+  variables(backup_dir: "#{backups_dir}/")
 end
 
 file "/var/lib/postgresql/.pgpass" do
@@ -59,6 +59,10 @@ end
 cron 'pg_backups' do
   action :create
   command "#{backups_dir}/pg_backup_rotated.sh -c /etc/postgresql/pg_backup.config"
+  environment({
+    "PGPASSFILE" => "/var/lib/postgresql/.pgpass",
+    "PGPASSWORD" => node["postgresql"]["password"]["postgres"],
+  })
   hour '1'
   minute '0'
   user 'postgres'
