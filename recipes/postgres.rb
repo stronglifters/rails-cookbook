@@ -32,13 +32,14 @@ postgresql_database_user username do
   action :grant
 end
 
-directory "/var/backups/postgresql/" do
+backups_dir = "/var/backups/postgresql"
+directory backups_dir do
   user "postgres"
   group "postgres"
   recursive true
 end
 
-template "/var/backups/postgresql/pg_backup_rotated.sh" do
+template "#{backups_dir}/pg_backup_rotated.sh" do
   user "postgres"
   group "postgres"
   mode "0744"
@@ -47,10 +48,18 @@ end
 template "/etc/postgresql/pg_backup.config" do
   user "postgres"
   group "postgres"
-  variables(backup_dir: "/var/backups/postgresql/")
+  variables(backup_dir: backups_dir)
 end
 
 file "/var/lib/postgresql/.pgpass" do
   content "localhost:5432:*:postgres:#{node["postgresql"]["password"]["postgres"]}"
   mode "0600"
+end
+
+cron 'pg_backups' do
+  action :create
+  command "#{backups_dir}/pg_backup_rotated.sh -c /etc/postgresql/pg_backup.config"
+  hour '1'
+  minute '0'
+  user 'postgres'
 end
