@@ -63,6 +63,8 @@ end
 
 aws_config = node['stronglifters']['aws']['profiles']['default']
 
+package "python-pip"
+execute "pip install awscli"
 cron 'pg_backups' do
   action :create
   command "#{backups_dir}/pg_backup_rotated.sh -c /etc/postgresql/pg_backup.config"
