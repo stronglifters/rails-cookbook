@@ -31,3 +31,26 @@ postgresql_database_user username do
   privileges [:all]
   action :grant
 end
+
+directory "/var/backups/postgresql/" do
+  user "postgres"
+  group "postgres"
+  recursive true
+end
+
+template "/var/backups/postgresql/pg_backup_rotated.sh" do
+  user "postgres"
+  group "postgres"
+  mode "0744"
+end
+
+template "/etc/postgresql/pg_backup.config" do
+  user "postgres"
+  group "postgres"
+  variables(backup_dir: "/var/backups/postgresql/")
+end
+
+file "/var/lib/postgresql/.pgpass" do
+  content "localhost:5432:*:postgres:#{node["postgresql"]["password"]["postgres"]}"
+  mode "0600"
+end
