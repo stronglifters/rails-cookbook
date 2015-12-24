@@ -2,7 +2,7 @@ package "python-pip"
 execute "pip install awscli"
 
 username = node["stronglifters"]["username"]
-home = node['etc']['passwd'][username]['dir']
+home = "/home/#{node["stronglifters"]["username"]}"
 directory "#{home}/.aws/" do
   owner username
   group username
