@@ -132,6 +132,6 @@ fi
 find $BACKUP_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*-daily" -exec rm -rf '{}' ';'
 perform_backups "-daily"
 
-if [ -z $S3_PATH ] ; then
-  aws s3 sync $BACKUP_DIR $S3_PATH
-fi
+[ -z "$S3_PATH" ] && echo "no aws backup" && exit 0;
+
+aws s3 sync $BACKUP_DIR $S3_PATH
