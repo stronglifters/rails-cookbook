@@ -61,7 +61,7 @@ file "/var/lib/postgresql/.pgpass" do
   user "postgres"
 end
 
-aws_cli("postgres")
+#aws_cli("postgres")
 
 cron 'pg_backups' do
   action :create
@@ -69,6 +69,7 @@ cron 'pg_backups' do
   environment({
     "PGPASSFILE" => "/var/lib/postgresql/.pgpass",
     "PGPASSWORD" => node["postgresql"]["password"]["postgres"],
+    "AWS_KEY" => "",
   })
   hour '1'
   minute '0'

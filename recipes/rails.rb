@@ -1,5 +1,5 @@
 include_recipe "stronglifters::user"
-aws_cli(node["stronglifters"]["username"])
+include_recipe "stronglifters::aws"
 
 root_path = node["stronglifters"]["root_path"]
 shared_path = File.join(root_path, "shared")
@@ -41,4 +41,5 @@ runit_service "foreman" do
   log_size 1_000_000
   log_num 31
   retries 3
+  #only_if { ::File.exists?("#{File.join(root_path, "current")}/Procfile") }
 end if File.exists?("#{File.join(root_path, "current")}/Procfile")
