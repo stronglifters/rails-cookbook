@@ -7,10 +7,11 @@ describe "stronglifters::rails" do
       node.set["postgres"]["username"] = username
       node.set["postgres"]["password"] = "password"
       node.set["postgres"]["host"] = "localhost"
+      node.set["etc"]["passwd"][username]["dir"] = "/home/#{username}"
     end.converge(described_recipe)
   end
   let(:root_path) { "/var/www/#{FFaker::Internet.domain_name}"  }
-  let(:shared_path) { "#{root_path}/shared" }
+  let(:shared_path) { File.join(root_path, "shared") }
   let(:username) { "deployer" }
 
   before :each do

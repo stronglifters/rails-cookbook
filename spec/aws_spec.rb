@@ -2,6 +2,7 @@ describe "stronglifters::aws" do
   subject do
     ChefSpec::SoloRunner.new do |node|
       node.set["stronglifters"]["username"] = username
+      node.set["etc"]["passwd"][username]["dir"] = "/home/#{username}"
     end.converge(described_recipe)
   end
 

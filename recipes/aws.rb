@@ -2,7 +2,8 @@ package "python-pip"
 execute "pip install awscli"
 
 username = node["stronglifters"]["username"]
-directory "/home/#{username}/.aws/" do
+home = "/home/#{node["stronglifters"]["username"]}"
+directory "#{home}/.aws/" do
   owner username
   group username
   mode "0755"
@@ -11,10 +12,10 @@ directory "/home/#{username}/.aws/" do
 end
 
 configuration = node["stronglifters"]["aws"]
-template "/home/#{username}/.aws/config" do
+template "#{home}/.aws/config" do
   variables(configuration)
 end
 
-template "/home/#{username}/.aws/credentials" do
+template "#{home}/.aws/credentials" do
   variables(configuration)
 end
