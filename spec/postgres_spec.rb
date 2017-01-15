@@ -6,6 +6,9 @@ describe "stronglifters::postgres" do
       node.set["postgres"]["username"] = database_user
       node.set["postgresql"]["password"]['postgres'] = database_password
       node.set["postgresql"]["config"] = {}
+      node.set['postgresql']['client']['packages'] = []
+      node.set['postgresql']['config']['data_directory'] = "/var/data"
+      node.set['postgresql']['contrib']['packages'] = []
     end.converge(described_recipe)
   end
 
@@ -15,7 +18,7 @@ describe "stronglifters::postgres" do
   let(:database_password) { "password" }
 
   before :each do
-    stub_command('ls /recovery.conf').and_return(true)
+    stub_command('ls /var/data/recovery.conf').and_return(true)
   end
 
   it 'creates the specified database' do
