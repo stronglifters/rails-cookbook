@@ -14,11 +14,13 @@ template "/etc/profile.d/rails.sh" do
   variables(env: node["stronglifters"]["env"])
 end
 
-directory "#{shared_path}/config" do
-  mode "0755"
-  owner node["stronglifters"]["username"]
-  group node["stronglifters"]["username"]
-  recursive true
+[root_path, shared_path, "#{shared_path}/config"].each do |dir|
+  directory dir do
+    mode "0755"
+    owner node["stronglifters"]["username"]
+    group node["stronglifters"]["username"]
+    recursive true
+  end
 end
 
 file "#{shared_path}/config/database.yml" do
