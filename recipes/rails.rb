@@ -32,16 +32,3 @@ production:
   url: <%= ENV['DATABASE_URL'] %>
 YAML
 end
-
-gem "foreman"
-
-runit_service "foreman" do
-  action [:enable, :start]
-  default_logger true
-  env node["stronglifters"]["env"]
-  log true
-  log_size 1_000_000
-  log_num 31
-  retries 3
-  #only_if { ::File.exists?("#{File.join(root_path, "current")}/Procfile") }
-end if File.exists?("#{File.join(root_path, "current")}/Procfile")
