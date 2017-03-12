@@ -63,7 +63,7 @@ http {
     access_log /var/log/nginx/<%= @domain %>.access.log;
 
     # enable HTST
-    add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload";
+    add_header Strict-Transport-Security "max-age=63072000; preload";
 
     # disable loading in an iframe
     add_header X-Frame-Options "DENY";
