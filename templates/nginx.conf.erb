@@ -45,8 +45,9 @@ http {
     server_name <%= @domain %>;
     server_tokens off;
     root <%= node['stronglifters']['root_path'] %>/current/public;
-    ssl_certificate /etc/ssl/certs/<%= @domain %>.crt;
-    ssl_certificate_key /etc/ssl/private/<%= @domain %>.key;
+    ssl_certificate /etc/letsencrypt/live/<%= @domain %>/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/<%= @domain %>/privkey.pem;
+
 
     ssl_session_timeout 5m;
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
